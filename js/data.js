@@ -1,4 +1,4 @@
-import {getRandomInteger} from "./util.js";
+import {getRandomInteger} from './util.js';
 
 const commentsCollection = [
   'Всё отлично!',
@@ -34,21 +34,31 @@ const getArray = () => {
   return randomElements;
 };
 
+const getNewComment = () => ({
+  id: getArray().shift(),
+  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+  message: commentsCollection[getRandomInteger(0, commentsCollection.length - 1)],
+  name: commentAuthors[getRandomInteger(0, commentAuthors.length - 1)],
+});
+
+const commentsArray = () => {
+  const commentElements = [];
+  while (commentElements.length < 10) {
+    commentElements.push(getNewComment());
+  }
+  return commentElements;
+};
+
 const createPhotoDescription = () => ({
   id: getFixedArray().shift(),
   url: `photos/${getRandomInteger(1, 25)}.jpg`,
   description: 'Здесь должно быть описание, но вместо него вот это вот',
   likes: getRandomInteger(15, 200),
-  comments: {
-    id: getArray().shift(),
-    avatar: `img/avatar-${getRandomInteger(1,6)}.svg`,
-    message: commentsCollection[getRandomInteger(0, commentsCollection.length - 1)],
-    name: commentAuthors[getRandomInteger(0, commentAuthors.length - 1)],
-  }
+  comments: commentsArray()
 });
 
 const createDescriptionArray = Array.from({length: COMMENTS_COUNT}, createPhotoDescription);
 
 const returnDescriptionArray = () => createDescriptionArray;
 
-returnDescriptionArray();
+export {returnDescriptionArray};
