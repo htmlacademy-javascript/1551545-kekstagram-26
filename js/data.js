@@ -54,7 +54,7 @@ const createPhotoDescription = () => ({
   url: `photos/${getRandomInteger(1, 25)}.jpg`,
   description: 'Здесь должно быть описание, но вместо него вот это вот',
   likes: getRandomInteger(15, 200),
-  comments: commentsArray()
+  comments: commentsArray(),
 });
 
 const createDescriptionArray = Array.from({length: COMMENTS_COUNT}, createPhotoDescription);
