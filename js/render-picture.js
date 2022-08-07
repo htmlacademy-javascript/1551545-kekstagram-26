@@ -1,4 +1,5 @@
 import {returnDescriptionArray} from './data.js';
+import {showBigPicture} from './pictures.js';
 
 const userPictureList = document.querySelector('.pictures');
 const userPictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -10,4 +11,9 @@ userPictures.forEach((photo) => {
   pictureElement.querySelector('.picture__likes').textContent = photo.likes;
   pictureElement.querySelector('.picture__comments').textContent = photo.comments.length.toString();
   userPictureList.appendChild(pictureElement);
+
+  pictureElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    showBigPicture(photo);
+  });
 });
